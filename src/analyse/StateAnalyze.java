@@ -8,8 +8,10 @@ import java.util.LinkedList;
 /*
     exp -> exp {addop term}
     addop -> + \ -
-    term -> term {mulop factor}
+    term -> Negative {mulop Negative}
     mulop -> *|/
+    Nagative -> -factor|factor
+
     factor -> (exp) |number
 
  */
@@ -65,22 +67,33 @@ public class StateAnalyze {
             match(tok.word);
             term();
             output+=s;
-            output+=".";
+            output+="|";
         }
 
     }
     public void term() throws CodeException
     {
-        factor();
+        Negative();
         while (tok.word.equals("*")||tok.word.equals("/"))
         {
             String s=tok.word;
             match(tok.word);
-            factor();
+            Negative();
             output+=s;
-            output+=".";
+            output+="|";
         }
 
+    }
+    public void Negative() throws CodeException
+    {
+        if (tok.word.equals("-"))
+        {
+            String s=tok.word;
+            match("-");
+            output+=s;
+            factor();
+        }
+        else factor();
     }
     public void factor() throws CodeException
     {
@@ -102,11 +115,11 @@ public class StateAnalyze {
         else Error("not a factor! (index:"+(index)+",line:"+tok.line+")");
     }
 
-//    public static void main(String args[])
-//    {
-//        Users users=new Users("测试.txt");
-//        System.out.println(users.wordAnalyse.tokes);
-//        users.stateAnalyze.start_analyse();
-//        System.out.println(users.stateAnalyze.output);
-//    }
+    public static void main(String args[])
+    {
+        Users users=new Users("test.txt");
+        System.out.println(users.wordAnalyse.tokes);
+        users.stateAnalyze.start_analyse();
+        System.out.println(users.stateAnalyze.output);
+    }
 }

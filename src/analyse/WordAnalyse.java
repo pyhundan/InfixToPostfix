@@ -131,7 +131,7 @@ public class WordAnalyse {
                 all.append('\n');
                 line = reader.readLine();
             }
-            WordAnalyse w = new WordAnalyse("1.11+2.23+3.23"+"\n");
+            WordAnalyse w = new WordAnalyse("1--2-3"+"\n");
            // WordAnalyse w = new WordAnalyse(all.toString());
             w.analyse();
             System.out.print(w.source);
