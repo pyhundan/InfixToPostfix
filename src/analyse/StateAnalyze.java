@@ -116,7 +116,7 @@ public class StateAnalyze {
 
     public static void main(String args[])
     {
-        Users users=new Users("test.txt");
+        Users users=new Users("src/自动生成.txt");
         System.out.println(users.wordAnalyse.tokes);
         users.stateAnalyze.start_analyse();
         System.out.println(users.stateAnalyze.output);
