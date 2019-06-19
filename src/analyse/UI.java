@@ -2,11 +2,9 @@ package analyse;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class UI extends JFrame {
 
@@ -244,6 +242,10 @@ public class UI extends JFrame {
 
     private void creat(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creat
         // TODO add your handling code here:
+        outFile();
+        String str="已经随机生成保存为<自动生成.txt>";
+        JOptionPane.showMessageDialog(null,str,"信息",JOptionPane.PLAIN_MESSAGE);
+
     }//GEN-LAST:event_creat
 
     private void textURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textURLActionPerformed
@@ -321,6 +323,32 @@ public class UI extends JFrame {
         {
             e.printStackTrace();
         }
+
+    }
+
+    public void outFile()
+    {
+        String path="自动生成.txt";
+        Random random=new Random();
+        int count=random.nextInt(50);
+        try {
+            File file=new File(path);
+            file.createNewFile();
+            FileOutputStream fileOutputStream=new FileOutputStream(file);
+            for (int n=0;n<count;n++)
+            {
+                String temp="";String temp1="";
+                AutoCreatinfix a=new AutoCreatinfix();
+                temp=a.Creatinfix();
+                temp1=a.deleteExcBracket(temp)+"\n";
+                byte[]  bytes = temp1.getBytes("UTF-8");
+                fileOutputStream.write(bytes);
+            }
+            fileOutputStream.close();
+
+        }catch (IOException e)
+        { }
+
 
     }
 

@@ -6,12 +6,11 @@ import error.CodeException;
 import java.util.LinkedList;
 
 /*
-    exp -> exp {addop term}
+    exp -> term {addop term}
     addop -> + \ -
     term -> Negative {mulop Negative}
     mulop -> *|/
     Nagative -> -factor|factor
-
     factor -> (exp) |number
 
  */
@@ -106,7 +105,7 @@ public class StateAnalyze {
         }
         else if (tok.type.equals("number"))
         {
-            int temp=Integer.parseInt(tok.word);
+            //int temp=Integer.parseInt(tok.word);
             String s=tok.word;
             match("number");
             output+=s;

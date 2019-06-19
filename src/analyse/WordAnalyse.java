@@ -60,20 +60,15 @@ public class WordAnalyse {
         int index=0;
         int state=0;
         String temp="";
-
         while(index<source.length())
         {
             char cur=source.charAt(index);
-
-            if (state==START)
-            {
+            if (state==START) {
                 state=getWhat(cur);
             }
-            switch (state)
-            {
+            switch (state) {
                 case NUMBER:
-                    if ((cur>='0'&&cur<='9')||cur=='.')
-                    {
+                    if ((cur>='0'&&cur<='9')||cur=='.') {
                         temp=temp+cur;
                         cur=source.charAt(index++);
                         continue;
@@ -88,8 +83,7 @@ public class WordAnalyse {
                     }
                     break;
                 case CHAR:
-                    switch (cur)
-                    {
+                    switch (cur) {
                         case '\n':
                             line++;
                             index++;
